@@ -1,7 +1,6 @@
 
 package org.ta4j.core.indicators.candles;
 
-import org.ta4j.core.Bar;
 import org.ta4j.core.TimeSeries;
 import org.ta4j.core.indicators.CachedIndicator;
 
@@ -16,6 +15,10 @@ public class HHHLIndicator extends CachedIndicator<Boolean> {
 
     private static final long serialVersionUID = 5029587222777743555L;
 
+    private final HHIndicator hh;
+
+    private final HLIndicator hl;
+
     /**
      * Constructor.
      *
@@ -23,17 +26,12 @@ public class HHHLIndicator extends CachedIndicator<Boolean> {
      */
     public HHHLIndicator(final TimeSeries series) {
         super(series);
+        this.hh = new HHIndicator(series);
+        this.hl = new HLIndicator(series);
     }
 
     @Override
     protected Boolean calculate(final int index) {
-        if (index < 1) {
-            // HHHL is a 2-candle pattern
-            return false;
-        }
-        final Bar prevBar = getTimeSeries().getBar(index - 1);
-        final Bar currBar = getTimeSeries().getBar(index);
-        return currBar.getClosePrice().isGreaterThan(prevBar.getClosePrice()) // HH
-                && currBar.getMinPrice().isGreaterThan(prevBar.getMinPrice()); // HL
+        return hh.getValue(index) && hl.getValue(index);
     }
 }
