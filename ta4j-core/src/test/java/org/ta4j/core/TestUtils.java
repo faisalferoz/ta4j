@@ -1,7 +1,7 @@
 /*******************************************************************************
  *   The MIT License (MIT)
  *
- *   Copyright (c) 2014-2017 Marc de Verdelhan, 2017-2018 Ta4j Organization 
+ *   Copyright (c) 2014-2017 Marc de Verdelhan, 2017-2018 Ta4j Organization
  *   & respective authors (see AUTHORS)
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of
