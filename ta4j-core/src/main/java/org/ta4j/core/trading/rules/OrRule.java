@@ -1,7 +1,7 @@
 /*******************************************************************************
  *   The MIT License (MIT)
  *
- *   Copyright (c) 2014-2017 Marc de Verdelhan, 2017-2018 Ta4j Organization 
+ *   Copyright (c) 2014-2017 Marc de Verdelhan, 2017-2018 Ta4j Organization
  *   & respective authors (see AUTHORS)
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -34,23 +34,23 @@ import org.ta4j.core.TradingRecord;
  */
 public class OrRule extends AbstractRule {
 
-    private Rule rule1;
-    
-    private Rule rule2;
+    private Rule[] rules;
 
     /**
      * Constructor.
-     * @param rule1 a trading rule
-     * @param rule2 another trading rule
+     * @param rules trading rules (at least one is required)
      */
-    public OrRule(Rule rule1, Rule rule2) {
-        this.rule1 = rule1;
-        this.rule2 = rule2;
+    public OrRule(Rule... rules) {
+        this.rules = rules;
     }
 
     @Override
     public boolean isSatisfied(int index, TradingRecord tradingRecord) {
-        final boolean satisfied = rule1.isSatisfied(index, tradingRecord) || rule2.isSatisfied(index, tradingRecord);
+        int i = 0;
+        boolean satisfied = false;
+        do {
+            satisfied |= rules[i++].isSatisfied(index, tradingRecord);
+        } while (!satisfied && i < rules.length);
         traceIsSatisfied(index, satisfied);
         return satisfied;
     }
