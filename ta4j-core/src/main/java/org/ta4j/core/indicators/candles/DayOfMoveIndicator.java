@@ -3,12 +3,13 @@ package org.ta4j.core.indicators.candles;
 
 import org.ta4j.core.TimeSeries;
 import org.ta4j.core.indicators.CachedIndicator;
+import org.ta4j.core.num.Num;
 
 /**
  * Day of Move indicator.
  *
  */
-public class DayOfMoveIndicator extends CachedIndicator<Integer> {
+public class DayOfMoveIndicator extends CachedIndicator<Num> {
 
     private static final long serialVersionUID = -6656574575739130421L;
 
@@ -25,24 +26,24 @@ public class DayOfMoveIndicator extends CachedIndicator<Integer> {
     }
 
     @Override
-    protected Integer calculate(final int index) {
+    protected Num calculate(final int index) {
         if (index < 1) {
-            return 0;
+            return numOf(0);
         }
 
         final PriceActivity priceActivity = priceActivityIndicator.getValue(index);
 
         final Integer firstDay = isFirstDay(priceActivity, index);
         if (firstDay == 0) {
-            return 0;
+            return numOf(0);
         }
 
         if (firstDay == 1) {
-            return 1;
+            return numOf(1);
         }
 
         if ((priceActivity == PriceActivity.BULL || priceActivity == PriceActivity.BEAR)) {
-            return this.getValue(index - 1) + 1;
+            return this.getValue(index - 1).plus(numOf(1));
         }
 
         return this.getValue(index - 1);

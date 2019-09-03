@@ -63,10 +63,10 @@ public class DayOfMoveIndicatorTest extends AbstractIndicatorTest<Indicator<Num>
     @Test
     public void getValue() {
         final DayOfMoveIndicator indicator = new DayOfMoveIndicator(series);
-        assertEquals(Integer.valueOf(0), indicator.getValue(0));
-        assertEquals(Integer.valueOf(1), indicator.getValue(1));
-        assertEquals(Integer.valueOf(0), indicator.getValue(2));
-        assertEquals(Integer.valueOf(1), indicator.getValue(3));
-        assertEquals(Integer.valueOf(2), indicator.getValue(4));
+        assertEquals(series.numOf(0), indicator.getValue(0));
+        assertEquals(series.numOf(1), indicator.getValue(1));
+        assertEquals(series.numOf(0), indicator.getValue(2));
+        assertEquals(series.numOf(1), indicator.getValue(3));
+        assertEquals(series.numOf(2), indicator.getValue(4));
     }
 }
