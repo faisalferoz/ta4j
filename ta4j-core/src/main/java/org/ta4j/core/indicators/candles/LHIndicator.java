@@ -28,7 +28,6 @@ public class LHIndicator extends CachedIndicator<Boolean> {
     @Override
     protected Boolean calculate(final int index) {
         if (index < 1) {
-            // HHHL is a 2-candle pattern
             return false;
         }
         final Bar prevBar = getTimeSeries().getBar(index - 1);

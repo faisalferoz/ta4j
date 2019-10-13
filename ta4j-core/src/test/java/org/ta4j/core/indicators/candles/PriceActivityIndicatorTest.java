@@ -63,7 +63,7 @@ public class PriceActivityIndicatorTest extends AbstractIndicatorTest<Indicator<
     @Test
     public void getValue() {
         final PriceActivityIndicator indicator = new PriceActivityIndicator(series);
-        assertEquals(PriceActivity.INSIDE, indicator.getValue(0));
+        assertEquals(PriceActivity.BULL, indicator.getValue(0));
         assertEquals(PriceActivity.BULL, indicator.getValue(1));
         assertEquals(PriceActivity.BEAR, indicator.getValue(2));
         assertEquals(PriceActivity.ENGULF, indicator.getValue(3));

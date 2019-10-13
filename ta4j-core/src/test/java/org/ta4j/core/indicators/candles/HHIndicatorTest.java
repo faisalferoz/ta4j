@@ -61,7 +61,7 @@ public class HHIndicatorTest extends AbstractIndicatorTest<Indicator<Num>, Num> 
     @Test
     public void getValue() {
         final HHIndicator hh = new HHIndicator(series);
-        assertFalse(hh.getValue(0));
+        assertTrue(hh.getValue(0));
         assertTrue(hh.getValue(1));
         assertFalse(hh.getValue(2));
     }
