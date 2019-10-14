@@ -49,7 +49,7 @@ public class TrendStrengthIndicator extends CachedIndicator<Num> {
 
     private final EMAIndicator ema90;
 
-    private final TripleEMAIndicator tema90;
+    private final AlnoorTripleEMAIndicator tema90;
 
     /**
      * Constructor
@@ -62,7 +62,7 @@ public class TrendStrengthIndicator extends CachedIndicator<Num> {
         ema30 = new EMAIndicator(price, 30);
         ema50 = new EMAIndicator(price, 50);
         ema90 = new EMAIndicator(price, 90);
-        tema90 = new TripleEMAIndicator(price, 90);
+        tema90 = new AlnoorTripleEMAIndicator(price, 90);
     }
 
     @Override
