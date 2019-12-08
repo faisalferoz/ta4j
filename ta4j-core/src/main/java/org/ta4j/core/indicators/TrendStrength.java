@@ -1,6 +1,8 @@
 
 package org.ta4j.core.indicators;
 
+import java.util.stream.Stream;
+
 /**
  * Represents different Trend Strength Levels
  *
@@ -27,6 +29,19 @@ public enum TrendStrength {
 
     public Integer getValue() {
         return value;
+    }
+
+    /**
+     * Returns the TrendStrength constant which matches the given <code>value</code>
+     *
+     * @param value - value to find
+     * @return the TrendStrength constant which matches the given <code>value</code>
+     */
+    public static TrendStrength fromValue(final Number value) {
+        return Stream.of(values()) //
+                .filter(e -> e.value.equals(value.intValue())) //
+                .findFirst().orElseThrow(
+                        () -> new IllegalArgumentException(String.format("No TrendStrength with value [%s]", value)));
     }
 
 }

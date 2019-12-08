@@ -65,6 +65,15 @@ public class TrendStrengthIndicator extends CachedIndicator<Num> {
         tema90 = new AlnoorTripleEMAIndicator(price, 90);
     }
 
+    /**
+     * Returns the latest value for the indicator
+     *
+     * @return the latest value for the indicator
+     */
+    public Num getLatest() {
+        return this.getValue(this.getTimeSeries().getEndIndex());
+    }
+
     @Override
     protected Num calculate(final int index) {
         if (index < 270) {
